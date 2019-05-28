@@ -9,6 +9,7 @@ import { fetchArticles } from '../actions';
 import ArticleDetailModal from '../components/ArticleDetailModal';
 
 const HomePage = props => {
+  console.log(123123123);
   const [modal, setModal] = useState(false);
   const [currentArticle, setCurrentArticle] = useState({});
 

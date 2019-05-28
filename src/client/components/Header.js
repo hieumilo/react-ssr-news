@@ -4,6 +4,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FormattedMessage, injectIntl } from 'react-intl';
+import Cookie from 'js-cookie';
 
 const Header = () => {
   const [menuOpen, setMenuToggle] = useState(false);
@@ -20,6 +22,11 @@ const Header = () => {
           <div className="nav-wrapper">
             <a href="/" className="brand-logo">
               SSR News
+              <FormattedMessage
+                id="app.hello_world"
+                defaultMessage="Hello World!"
+                description="Hello world header greeting"
+              />
             </a>
             <a href="javascript:void(0)" onClick={toggleMenu} className="sidenav-trigger right">
               <i className="material-icons">menu</i>
@@ -111,4 +118,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default injectIntl(Header);

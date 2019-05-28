@@ -7,6 +7,7 @@ import compression from 'compression';
 import renderer from './helpers/renderer';
 import createStore from './store/createStore';
 import Routes from './client/Routes';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
@@ -26,6 +27,8 @@ const port = process.env.PORT || 3000;
 
 // To be able to serve static files
 app.use(express.static('public'));
+
+app.use(cookieParser());
 
 app.get('*', (req, res) => {
   const params = req.params[0].split('/');
@@ -55,7 +58,7 @@ app.get('*', (req, res) => {
   // Wait for all the loadData functions, if they are resolved, send the rendered html to browser.
   Promise.all(promises).then(() => {
     const context = {};
-    const content = renderer(req, store, context);
+    const content = renderer(req, res, store, context);
 
     if (context.notFound) {
       res.status(404);
